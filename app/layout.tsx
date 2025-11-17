@@ -1,23 +1,19 @@
-﻿import type { ReactNode } from "react";
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import "./globals.css";
-
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
+﻿import type { Metadata } from "next";
+import "../styles/globals.css";
 
 export const metadata: Metadata = {
   title: "AI Diet Coach",
-  description: "Minimal demo for an AI diet coach agent",
+  description: "AI 식단 코치 데모 앱",
 };
 
 export default function RootLayout({
   children,
 }: {
-  children: ReactNode;
+  children: React.ReactNode;
 }) {
   return (
-    <html lang="ko" className={inter.variable}>
-      <body>{children}</body>
+    <html lang="ko">
+      <body className="bg-slate-50">{children}</body>
     </html>
   );
 }
