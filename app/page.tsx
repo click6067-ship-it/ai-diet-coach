@@ -53,8 +53,6 @@ export default function HomePage() {
       console.log("[client] raw from /api/analyze-meal:", raw);
 
       // 2) 형식에 따라 평탄화
-      //    - n8n: { output: "<여기 안에 진짜 JSON 문자열>" }
-      //    - 혹은 { data: {...} }, 혹은 이미 평평한 {...}
       let data: MealAnalysisResponse | null = null;
 
       if (raw && typeof raw === "object" && "output" in raw) {
@@ -121,26 +119,29 @@ export default function HomePage() {
 
   return (
     <main className="min-h-screen bg-slate-50">
-      <div className="container max-w-6xl py-12">
-        <header className="space-y-3 text-center md:text-left">
-          <p className="text-sm uppercase tracking-[0.3em] text-slate-400">
-            AI Coach
-          </p>
-          <h1 className="text-4xl font-bold text-slate-900 md:text-5xl">
-            AI Diet Coach
-          </h1>
-          <p className="text-sm text-slate-500">
-            Pusan National University × Upstage AI Agent Hackathon
-          </p>
-        </header>
+      {/* 양옆 여백 + 가운데 정렬용 래퍼 */}
+      <div className="px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-6xl py-12">
+          <header className="space-y-3 text-center md:text-left">
+            <p className="text-sm uppercase tracking-[0.3em] text-slate-400">
+              AI Coach
+            </p>
+            <h1 className="text-4xl font-bold text-slate-900 md:text-5xl">
+              AI Diet Coach
+            </h1>
+            <p className="text-sm text-slate-500">
+              Pusan National University × Upstage AI Agent Hackathon
+            </p>
+          </header>
 
-        <section className="mt-10 grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
-          <MealForm loading={loading} onSubmit={handleAnalyze} />
-          <div className="space-y-6">
-            <AnalysisResult result={currentResult} loading={loading} />
-            <HistoryList items={history} />
-          </div>
-        </section>
+          <section className="mt-10 grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
+            <MealForm loading={loading} onSubmit={handleAnalyze} />
+            <div className="space-y-6">
+              <AnalysisResult result={currentResult} loading={loading} />
+              <HistoryList items={history} />
+            </div>
+          </section>
+        </div>
       </div>
       <Toaster />
     </main>
